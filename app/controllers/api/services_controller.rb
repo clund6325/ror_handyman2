@@ -3,7 +3,7 @@ class Api::ServicesController < ApplicationController
   before_action :set_service, only: [:show, :update, :destroy]
 
   def index
-    render json: @worker.services
+    render json: @worker.services.all
   end
   
   def show
