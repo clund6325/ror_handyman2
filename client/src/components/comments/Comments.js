@@ -59,12 +59,12 @@ const Comments = ({ serviceId }) => {
   return(
     <>
       <h1 style={{ color: 'blue' }}>Comments</h1>
-      {comments.map((comment) => (
+      {/* {comments.map((comment) => (
         <>
           <a href={`/comment/${comment.id}`}>{comment.title}</a>
           <br/>
         </>
-      ))}
+      ))} */}
       <CommentList
         serviceId={serviceId}
         comments={comments}
