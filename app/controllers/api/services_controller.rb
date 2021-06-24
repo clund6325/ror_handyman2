@@ -20,7 +20,7 @@ class Api::ServicesController < ApplicationController
   end
 
   def update
-    if @service.update(service_params)
+    if @worker.services.update(service_params, [:worker_id])
       render json: @service
     else
       render json: { errors: @service.errors }, status: :unprocessable_entity
@@ -40,6 +40,6 @@ class Api::ServicesController < ApplicationController
       @service = @worker.services.find(params[:id])
     end
     def service_params
-      params.require(:service).permit(:job, :price, :appointment)
+      params.require(:service).permit(:job, :price, :appointment, :worker_id)
     end
 end

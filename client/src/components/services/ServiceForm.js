@@ -1,11 +1,21 @@
 import { useState, useEffect } from 'react';
 
-const ServiceForm = ({ addService }) => {
+const ServiceForm = ({ addService, id, job, price, appointment, updateService, setEditing }) => {
   const [service, setService] = useState({ job: "", price: "", appointment: "" })
-
+  useEffect( () => {
+    if(id){
+      setService({job, price, appointment, id:id})
+    }
+  }, [])
   const handleSubmit = (e) => {
     e.preventDefault()
-    addService(service)
+    if (id){
+      updateService(id, service)
+      setEditing(false)
+    }
+    else{
+      addService(service)
+    }
     setService({ job: "", price: "", appointment: "" })
   }
 
@@ -15,7 +25,7 @@ const ServiceForm = ({ addService }) => {
         name="job"
         value={service.job}
         onChange={(e) => setService({ ...service, job: e.target.value })}
-        placeholder="job"
+        placeholder="Job"
         required
       />
       <input

@@ -15,7 +15,8 @@
       Comment.create(
         title: Faker::Kpop.iii_groups,
         body: Faker::Hipster.paragraph(sentence_count: 2, supplemental: true, random_sentences_to_add: 5),
-        rating: Faker::Number.between(from: 1, to: 5)
+        rating: Faker::Number.between(from: 1, to: 5),
+        service_id: service.id
       )
     end
   end

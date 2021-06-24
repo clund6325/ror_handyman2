@@ -1,7 +1,9 @@
 import Moment from 'react-moment';
+import ServiceForm from '../services/ServiceForm';
+import { useState,} from 'react';
 
-const Service = ({ id, job, price, appointment, worker_id, updateService, deleteService }) => {
-  
+const Service = ({ id, job, price, appointment, updateService, deleteService }) => {
+  const [editing, setEditing] = useState(false)
   return(
     <>
       <h3>{job}</h3>
@@ -16,8 +18,21 @@ const Service = ({ id, job, price, appointment, worker_id, updateService, delete
       </Moment>
       <br/>
       <br/>
-      <button onClick={() => updateService(id)}>Edit</button>
       <button onClick={() => deleteService(id)}>Delete</button>
+      {editing ?
+        <>
+          <ServiceForm
+            id={id}
+            job={job}
+            price={price}
+            appointment={appointment}
+            updateService={updateService}
+            setEditing={setEditing}
+          />
+        </>
+        :
+        <button onClick={() => updateService(id)}>Edit</button>
+      }
     </>
   )
 }

@@ -6,24 +6,24 @@ import ServiceForm from './ServiceForm';
 const Services = ({ workerId }) => {
   const [services, setServices] = useState([])
 
-  const getServices = () => {
-    axios.get(`/api/workers/${workerId}/services`)
-      .then((res) => {
-        setServices(res.data);
-        console.log(res.data);
-      })
-      .catch((err) => console.log(err));
-  };
-  // useEffect( () => {
+  // const getServices = () => {
   //   axios.get(`/api/workers/${workerId}/services`)
-  //     .then( res => {
-  //       setServices(res.data)
+  //     .then((res) => {
+  //       setServices(res.data);
+  //       console.log(res.data);
   //     })
-  //     .catch( err => console.log(err))
-  // }, [])
-    useEffect(() => {
-      getServices();
-    }, []);
+  //     .catch((err) => console.log(err));
+  // };
+  useEffect( () => {
+    axios.get(`/api/workers/${workerId}/services`)
+      .then( res => {
+        setServices(res.data)
+      })
+      .catch( err => console.log(err))
+  }, [])
+    // useEffect(() => {
+    //   getServices();
+    // }, []);
 
   const addService = (service) => {
     axios.post(`/api/workers/${workerId}/services`, { service })
@@ -33,7 +33,7 @@ const Services = ({ workerId }) => {
       .catch( err => console.log(err))
   }
 
-  const updateService = (id, service) => {
+  const updateService = (id, service, ) => {
     axios.put(`/api/workers/${workerId}/services/${id}`, {service})
       .then( res => {
         const updatedServices = service.map( s => {
